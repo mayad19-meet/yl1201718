@@ -1,5 +1,6 @@
 import turtle
-turtle.pensize(10)
+#turtle.pensize(1)
+turtle.speed(100)
 #turtle.color("blue")
 
 #a=20
@@ -58,19 +59,21 @@ turtle.pensize(10)
 #turtle.right(60)
 #turtle.forward(50)
 #turtle.right(90)
-#turtle.forward(40)
+#turtle.forward(85)
 
 
 #turtle.mainloop()
 
+angle=5
+for i in range(122):
 
+	turtle.forward(60)
+	turtle.right(60)
+	turtle.forward(30)
+	turtle.right(90)
+	turtle.forward(15)
+	turtle.home()
+	turtle.right(angle)
+	angle=angle+4
 
-
-
-
-
-
-
-
-
-
+turtle.mainloop()
