@@ -1,6 +1,6 @@
-import turtle
+#import turtle
 #turtle.pensize(1)
-turtle.speed(100)
+#turtle.speed(100)
 #turtle.color("blue")
 
 #a=20
@@ -64,16 +64,39 @@ turtle.speed(100)
 
 #turtle.mainloop()
 
-angle=5
-for i in range(122):
+#angle=5
+#for i in range(122):
 
-	turtle.forward(60)
-	turtle.right(60)
-	turtle.forward(30)
-	turtle.right(90)
-	turtle.forward(15)
-	turtle.home()
-	turtle.right(angle)
-	angle=angle+4
+#	turtle.forward(60)
+#	turtle.right(60)
+#	turtle.forward(30)
+#	turtle.right(90)
+#	turtle.forward(15)
+#	turtle.home()
+#	turtle.right(angle)
+#	angle=angle+4
 
-turtle.mainloop()
+#turtle.mainloop()
+
+
+class animal(object):
+	def _init_(self,sound,name,age,favprite_color):
+		self.sound = sound
+		self.name = name
+		self.age = age
+		self.favorite_color = favorite_color
+	def eat(self,food):
+		print('yummy!!'+ self.name +'is eating'+ food)
+	def description(self):
+		print(self.name + 'is' +self.age +"years old and love the color"+self.favorite_color)
+	def make_sound(self,time):
+		print()
+
+
+
+
+
+
+
+
+
