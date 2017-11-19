@@ -14,5 +14,25 @@ a = Animal('ploply','Tut',7,'red')
 a.eat('strewberries')
 a.make_sound(5)
 
-class.person(object):
-	def __init__(self,name,18,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
