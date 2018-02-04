@@ -6,19 +6,21 @@ from personal_project import Ball
 turtle.tracer(0)
 turtle.hideturtle()
 RUNNING = True
-SLEEP = 0.0077
+SLEEP = 0.007
+SCREEN_WIDTH_MINUS=-turtle.getcanvas().winfo_width()/2
 SCREEN_WIDTH = turtle.getcanvas().winfo_width()/2
 SCREEN_HIGHT = turtle.getcanvas().winfo_width()/2
-MY_BALL = Ball(0,0,10,50,100,"lightpink")
+MY_BALL = Ball(0,0,10,50,40,"blue")
 
 NUMBER_OF_BALLS = 5
 MINIMUM_BALL_RADIUS = 10
-MAXIMUM_BALL_RADIUS = 100
+MAXIMUM_BALL_RADIUS = 30
 MINIMUM_BALL_DX = -5
 MAXIMUM_BALL_DX = 5
 MINIMUM_BALL_DY = -5
 MAXIMUM_BALL_DY = 5
-
+FIRST=int(SCREEN_WIDTH_MINUS + MAXIMUM_BALL_RADIUS)
+SECOND=int(SCREEN_WIDTH - MAXIMUM_BALL_RADIUS)
 BALLS = []
 
 for i in range (NUMBER_OF_BALLS):
@@ -94,10 +96,22 @@ def check_all_balls_collidion():
 					ball_a.shapesize(ball_a.radius/10)
 
 def check_myball_collision():
-	for i in range(len(BALLS)):
+	for i in BALLS:
 		if collide(i,MY_BALL)==True:
 			if MY_BALL.radius>i.radius:
-				i.goto(x_coordinate,y_coordinate)
+				
+				x_coordinate= random.randint(FIRST,SECOND)
+				y_coordinate= random.randint(-SCREEN_HIGHT+MAXIMUM_BALL_RADIUS, SCREEN_HIGHT - MAXIMUM_BALL_RADIUS)
+				
+				x_axis_speed=random.randint(MINIMUM_BALL_DX, MAXIMUM_BALL_DX)
+				while x_axis_speed==0:
+					x_axis_speed=random.randint(MINIMUM_BALL_DX, MAXIMUM_BALL_DX)
+				y_axis_speed=random.randint(MINIMUM_BALL_DY,MAXIMUM_BALL_DY)
+				while y_axis_speed==0:
+					y_axis_speed=random.randint(MINIMUM_BALL_DY,MAXIMUM_BALL_DY)
+				radius = random.randint(MINIMUM_BALL_RADIUS,MAXIMUM_BALL_RADIUS)
+				
+				i.goto(x,y)
 				i.dx=x_axis_speed
 				i.dy=y_axis_speed
 				i.radius=radius
@@ -114,11 +128,24 @@ def movearound(event):
 	x_coordinate=event.x-SCREEN_WIDTH 	
 	y_coordinate=SCREEN_HIGHT-event.y
 	MY_BALL.goto(x_coordinate,y_coordinate)
-	turtle.getcanvas().bind("<Motion>",movearound)
-	turtle.listen()
+turtle.getcanvas().bind("<Motion>",movearound)
+turtle.listen()
 
-while RUNNING is True:
+while RUNNING == True:
+	
+	
+	if SCREEN_WIDTH != int(turtle.getcanvas().winfo_width()/2) or int(turtle.getcanvas().winfo_height()/2):
+		SCREEN_WIDTH =int(turtle.getcanvas().winfo_width()/2)
+		SCREEN_HIGHT = int(turtle.getcanvas().winfo_height()/2)
 	move_all_balls()
-	check_all_balls_collidion()
+	check_all_balls_collidion()	
+	if check_myball_collision() == False:
+		turtle.goto(0,0)
+		turtle.color("light  blue")
+		turtle.write("GAME OVER" ,align="center",font=("Ariel", 50, "normal"))
+		#time.sleep()
+		turtle.bye()
 	turtle.getscreen().update()
+ 	time.sleep(SLEEP)
+
 turtle.mainloop()
